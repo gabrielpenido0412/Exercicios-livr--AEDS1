@@ -1,20 +1,26 @@
-//Entrada: Código,numero de horas trabalhadas no mês, turno de trabalho,(m,v,n), categoria(o,g), valor  da hora trabalhada
-//a) Leia as informações dos funcionários, exceto o valor da hora trabalhada, não permitindo que sejam informados turnos e nem categorias inexistentes. Trabalhe sempre com a digitação de letras maiúsculas.
-//Entrada: Código,numero de horas trabalhadas no mês, turno de trabalho,(m,v,n), categoria(o,g)
-//são 10 funcionarios
 #include <stdio.h>
-#include <stdlib.h>
 int main(){
-    int c,nh,i;
-    char turno,catg;
-    if((turno=="m" ||turno=="v"||turno=="n")&&(catg=="o" ||catg=="g")){
-        for(i=1;i<=10,i++){
-            scanf("%d",&c);
-            scanf("%d",&nh);
-            scanf("%c",&c);
-            scanf("%d",&c);
-            scanf("%d",&c);
+    //o aux só tá ai pra ajudar a transformar o v[j] em v[j+1], já que só colocar direto v[j]=v[j+1] tá dando erro
+    int n=9;
+    int v[n],i,j,aux;
+    for(i=0;i<n;i++){
+        scanf("%d",&v[i]);
+    }
+    printf("Ordem atual: ");
+    for(i=0;i<n;i++){
+        printf(" %d",v[i]);
+    }
+    for(i=0;i<n;i++){
+        for(j=i+1;j<n;j++){
+            if(v[j]>v[i]){
+                aux=v[i];
+                v[i]=v[j];
+                v[i]=aux;
+            }
+        }
+        printf("\n Ordem decrescente: \n ");
+        for(j=0;j<n;j++){
+            printf(" %d",v[j]);
         }
     }
-
 }

@@ -1,42 +1,54 @@
-//soma,media,maior,menor,mediapar,porcentagemimpar
 #include <stdio.h>
+#include <stdlib.h>
 int main(){
-    int i,num,soma,maiornum,menornum,cont,contpar,somapar,contimpar;
-    float media,mediapar,porcentagemimpar;
-    soma=0;
-    somapar=0;
-    cont=0;
-    contpar=0;
-    contimpar=0;
-    maiornum=1;
-    menornum=999999;
-    do{
-      printf("Digite um numero: ");
-        scanf("%f",&num);
-        cont++;
-        soma=soma+num;
-        if(num % 2 ==0){
-            contpar++;
-            somapar=somapar+num;
+    int vet[15],par[5],impar[5],i,j,k,posicaopar,posicaoimpar;
+    posicaopar=0;
+    posicaoimpar=0;
+    //Pegando os valores pares e impares do vetor
+    for(i=0;i<15;i++){
+        printf("Digite um numero: ");
+        scanf("%d",&vet[i]);
+    }
+    for(i=0;i<15;i++){
+        if(vet[i]%2==0){
+            par[posicaopar]=vet[i];
+            posicaopar++;
         }else{
-            contimpar++;
+            impar[posicaoimpar]=vet[i];
+            posicaoimpar++;
         }
-        if(num>maiornum){
-            maiornum=num;
-        }else {
-            if(num<menornum){
-                menornum=num;
+        //Imprimi o vetor atual caso tenhamos mais que 5 pares(capacidade máxima do vetor)
+        if(posicaoimpar==5){
+            printf("\n Vetor cheio. Esvaziando: ");
+            for(j=0;j<5;j++){
+                printf("%d |",impar[j]);
             }
-        }
-    } while(num!=30000);
+            //Zerar a posição permite que substituimos alguns conteudos do vetor mais pra frente
+            posicaoimpar=0;
 
-    printf("A soma eh %d",soma);
-    media=soma/cont;
-    printf("A media eh %.2f",media);
-    printf("O maior numero eh %d",maiornum);
-    printf("O menor numero eh %d",menornum);
-    mediapar=somapar/contpar;
-    printf("A media dos pares eh %f",mediapar);
-    porcentagemimpar=contimpar *100/cont;
-    printf("A porcentagem dos impars eh %.2f",porcentagemimpar);
+        }
+        //Imprimi o vetor atual caso tenhamos mais que 5 impares(capacidade máxima do vetor)
+        if(posicaopar==5){
+            printf("\n Vetor cheio. Esvaziar: ");
+            for(j=0;j<5;j++){
+                printf("%d |",par[j]);
+            }
+            //Zerar a posição permite que substituimos alguns conteudos do vetor mais pra frente
+             posicaopar=0;
+        }
+     }
+     //Substitui os conteudos do vetor
+     if(posicaopar!=0){
+        printf("\n Vetor de pares restantes");
+        for(k=0;k<5;k++){
+            printf("%d |",par[k]);
+        }
+     }
+     //Substitui os conteudos do vetor
+     if(posicaoimpar!=0){
+        printf("\n Vetor de impares restantes");
+        for(k=0;k<5;k++){
+            printf("%d |",impar[k]);
+        }
+     }
 }
